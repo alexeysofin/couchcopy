@@ -32,7 +32,9 @@ Examples
 ### Convert a database to redshift format and save it to a local file
 
 **remote**
+
 ./couchcopy --input='https://username:password@example.com/database/_all_docs?include_docs=true&reduce=false' --output=database.redshift --redshift=true
 
 **local**
+
 ./couchcopy --input=database.json --output=database.redshift --redshift=true
