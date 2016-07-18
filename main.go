@@ -63,10 +63,9 @@ func updateOutput(input *string, output *string, total float64, rowDone <-chan i
 }
 
 func pushDocsWorker(url *string, docs chan *Doc, done chan bool, redshift bool) {
-	// buffers interface{} (Doc.Doc) objects into array (for bulk sending) from docs channel
-	// if buffer is full, we push docs to remote database
-
 	if redshift {
+		// if we are converting to redshift format (writing to local file)
+		// we do not need any buffered docs, just write them do output file with a new line
 		fp, err := os.Create(*url)
 		common.CheckError(err)
 		writer := bufio.NewWriter(fp)
@@ -81,6 +80,8 @@ func pushDocsWorker(url *string, docs chan *Doc, done chan bool, redshift bool) 
 		writer.Flush()
 
 	} else {
+		// buffers interface{} (Doc.Doc) objects into array (for bulk sending) from docs channel
+		// if buffer is full, we push docs to remote database
 		buffer := make([]interface{}, *bulk)
 		counter := 0
 

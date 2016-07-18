@@ -52,6 +52,7 @@ func WriteToRemote(dbUrl string, docs []interface{}) {
 
 func WriteStreamToFile(filePath string, reader io.Reader) (int64, error) {
 	// writes reader contents to file at given path
+
 	fp, err := os.Create(filePath)
 	common.CheckError(err)
 	return io.Copy(fp, reader)

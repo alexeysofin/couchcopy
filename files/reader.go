@@ -9,6 +9,7 @@ import (
 
 func NewReader(url string) (io.Reader, error) {
 	// returns a io.Reader interface depending on path is a url or not
+
 	if IsPathUrl(url) {
 		resp, err := http.Get(url)
 		if err != nil {
