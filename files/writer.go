@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/alexsofin/couchcopy/common"
+	"github.com/alexeysofin/couchcopy/common"
 	"io"
 	"io/ioutil"
 	"net/http"
